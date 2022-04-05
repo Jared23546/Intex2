@@ -25,6 +25,8 @@ namespace Intex2.Models
 
         public string COUNTY_NAME { get; set; }
 
+        public int CRASH_SEVERITY_ID { get; set; }
+
         public bool WORK_ZONE_RELATED { get; set; }
 
         public bool PEDESTRIAN_INVOLVED { get; set; }
@@ -62,10 +64,6 @@ namespace Intex2.Models
         public bool DROWSY_DRIVING { get; set; }
 
         public bool ROADWAY_DEPARTURE { get; set; }
-
-        [Required]
-        public int SeverityId { get; set; }
-        public Severity Severity { get; set; }
 
     }
 }
