@@ -26,12 +26,15 @@ namespace Intex2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+<<<<<<< HEAD
 
             services.AddDbContext<CrashDbContext>(options =>
             {
                 options.UseMySql(Configuration["ConnectionStrings:CrashDbConnection"]);
             });
             services.AddRazorPages();
+=======
+>>>>>>> parent of 11b94fb (added some id)
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +54,6 @@ namespace Intex2
             app.UseStaticFiles();
 
             app.UseRouting();
-            app.UseAuthentication();
 
             app.UseAuthorization();
 
@@ -60,8 +62,6 @@ namespace Intex2
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-
-                endpoints.MapRazorPages();
             });
         }
     }
