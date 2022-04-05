@@ -39,13 +39,15 @@
             <label asp-for="COUNTY_NAME">County:</label>
             <input asp-for="COUNTY_NAME" type="text" name="COUNTY_NAME" /><br />
             <br />
-            <label asp-for="SeverityId">Crash Severity:</label>
-            <select asp-for="SeverityId" required>
+            <label asp-for="CRASH_SEVERITY_ID">Crash Severity:</label>
+            <select asp-for="CRASH_SEVERITY_ID" required>
                 <option value="">Select a Severity</option>
-                @foreach (Severity s in ViewBag.Severities)
-                {
-                    <option value="@s.SeverityId">@s.Name</option>
-                }
+                <option value="1">No Injury</option>
+                <option value="2">Possible Injury</option>
+                <option value="3">Suspected Minor Injury</option>
+                <option value="4">Suspected Serious Injury</option>
+                <option value="5">Fatal</option>
+
             </select><br />
             <br />
             <label asp-for="WORK_ZONE_RELATED">Work Zone Related?</label>
