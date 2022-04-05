@@ -23,5 +23,4 @@ namespace Intex2.Models
                 new Severity { SeverityId = 5, Name = "Fatal" }
             );
         }
-    }
 }
