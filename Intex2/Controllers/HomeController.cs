@@ -7,20 +7,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Intex2.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Intex2.Controllers
 {
     public class HomeController : Controller
     {
-        private CrashDbContext _context { get; set; }
+        //private CrashDbContext _context { get; set; }
 
-        public HomeController(CrashDbContext temp)
-        {
-            _context = temp;
-        }
+        //public HomeController(CrashDbContext temp)
+        //{
+        //    _context = temp;
+        //}
 
-        public DbSet<utah_crashes> Crashes { get; set; }
-        public DbSet<Severity> Severities { get; set; }
+        //public DbSet<utah_crashes> Crashes { get; set; }
+        //public DbSet<Severity> Severities { get; set; }
 
 
         public IActionResult Index()
@@ -28,70 +29,78 @@ namespace Intex2.Controllers
             return View();
         }
 
-        public IActionResult Summary()
+        [Authorize]
+        public IActionResult Test()
         {
-            var blah = _context.Crashes.ToList();
-
-            return View(blah);
-        }
-
-        [HttpGet]
-        public IActionResult Add()
-        {
-            ViewBag.Categories = _context.Severities.ToList();
-
             return View();
         }
 
-        [HttpPost]
-        public IActionResult Add(utah_crashes uc)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(uc);
-                _context.SaveChanges();
-                return View("Confirmation", uc);
-            }
-            else
-            {
-                ViewBag.Categories = _context.Severities.ToList();
 
 
-                return View(uc);
-            }
-        }
+        //        public IActionResult Summary()
+        //        {
+        //            var blah = _context.Crashes.ToList();
 
-        [HttpGet]
-        public IActionResult Edit(string CrashId)
-        {
-            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
+        //            return View(blah);
+        //        }
 
-            return View("Edit", crash);
-        }
+        //        [HttpGet]
+        //        public IActionResult Add()
+        //        {
+        //            ViewBag.Categories = _context.Severities.ToList();
 
-        [HttpPost]
-        public IActionResult Edit(utah_crashes editInfo)
-        {
-            _context.Update(editInfo);
-            _context.SaveChanges();
+        //            return View();
+        //        }
 
-            return RedirectToAction("Summary");
-        }
+        //        [HttpPost]
+        //        public IActionResult Add(utah_crashes uc)
+        //        {
+        //            if (ModelState.IsValid)
+        //            {
+        //                _context.Add(uc);
+        //                _context.SaveChanges();
+        //                return View("Confirmation", uc);
+        //            }
+        //            else
+        //            {
+        //                ViewBag.Categories = _context.Severities.ToList();
 
-        public IActionResult Details(string CrashId)
-        {
-            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
 
-            return View("Details", crash);
-        }
+        //                return View(uc);
+        //            }
+        //        }
 
-        public IActionResult Delete(string CrashId)
-        {
-            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
-            _context.Remove(crash);
-            _context.SaveChanges();
+        //        [HttpGet]
+        //        public IActionResult Edit(string CrashId)
+        //        {
+        //            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
 
-            return RedirectToAction("Summary");
-        }
+        //            return View("Edit", crash);
+        //        }
+
+        //        [HttpPost]
+        //        public IActionResult Edit(utah_crashes editInfo)
+        //        {
+        //            _context.Update(editInfo);
+        //            _context.SaveChanges();
+
+        //            return RedirectToAction("Summary");
+        //        }
+
+        //        public IActionResult Details(string CrashId)
+        //        {
+        //            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
+
+        //            return View("Details", crash);
+        //        }
+
+        //        public IActionResult Delete(string CrashId)
+        //        {
+        //            var crash = _context.Crashes.Single(x => x.CRASH_ID == CrashId);
+        //            _context.Remove(crash);
+        //            _context.SaveChanges();
+
+        //            return RedirectToAction("Summary");
+        //        }
     }
 }
