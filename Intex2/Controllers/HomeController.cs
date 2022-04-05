@@ -20,8 +20,6 @@ namespace Intex2.Controllers
         }
 
         public DbSet<utah_crashes> Crashes { get; set; }
-        public DbSet<Severity> Severities { get; set; }
-
 
         public IActionResult Index()
         {
@@ -38,8 +36,6 @@ namespace Intex2.Controllers
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Categories = _context.Severities.ToList();
-
             return View();
         }
 
@@ -54,8 +50,6 @@ namespace Intex2.Controllers
             }
             else
             {
-                ViewBag.Categories = _context.Severities.ToList();
-
 
                 return View(uc);
             }
